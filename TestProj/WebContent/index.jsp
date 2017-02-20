@@ -11,6 +11,23 @@
 <link rel="stylesheet" href="css/jquery-ui.css" type="text/css">
 <link rel="stylesheet" href="css/ui.daterangepicker.css" type="text/css">
 <title>Employee form</title>
+<style>
+#h1 {
+	text-align: center;
+	color: white;
+	background-color: red;
+	padding: 20px;
+	border-style: groove;
+	font-family: sans-serif;
+	font-size: 200%;
+	cell-padding:0%;
+}
+
+body {
+
+	background-color: #b0d4de;
+}
+</style>
 <%
 	String working = "", overtime = "", year = "", normal = "", num1 = "", num2 = "";
 	Date createDate = null;
@@ -89,7 +106,16 @@ function onlyNos(e, t) {
         alert(err.Description);
     }
 };
-
+$(document).ready(function(){
+    $('#num2').bind("cut copy paste",function(e) {
+        e.preventDefault();
+    });
+});
+$(document).ready(function(){
+    $('#num1').bind("cut copy paste",function(e) {
+        e.preventDefault();
+    });
+});
         function validateform()
         {
         	 var location=document.getElementById("location").value;
@@ -109,6 +135,12 @@ function onlyNos(e, t) {
          		alert("please select overtime");
          		return false;
          	} 	
+         	var n1=document.getElementById("num1").value;
+         	if(n1=="")
+         		{
+         		alert("select no.of hours");
+         		return false;
+         		}
          	var workingholiday=document.getElementById("workingholiday").value;
          	if(workingholiday==""){
          		alert("please select workingholiday");
@@ -119,6 +151,12 @@ function onlyNos(e, t) {
          		alert("please select normalworkinghours");
          		return false;
          	}
+         	var n2=document.getElementById("num2").value;
+         	if(n2=="")
+         		{
+         		alert("select no.of hours");
+         		return false;
+         		}
          	else{
          		return true;
          	}
@@ -132,22 +170,26 @@ function onlyNos(e, t) {
 </style>
 </head>
 <body>
+	<h1 id="h1">HPCL Employee Form</h1>
 	<form action="" method="post">
 		<table align="center">
 			<tr>
 				<td><font size="2" face="ARIAL" color="darkblue"><b>LOCATION:</b>
-				</font></td>
+				</font>
+				</td>
 				<td><select id="location" name="location">
 						<option value="">--SELECT--</option>
 						<option value="telegana">telegana</option>
 						<option value="andhrapradesh">andhrapradesh</option>
 						<option value="tamilnadu">tamilnadu</option>
 						<option value="karnataka">karnataka</option>
-				</select></td>
+				</select>
+				</td>
 			</tr>
 			<tr>
 				<td><font size="2" face="ARIAL" color="darkblue"><b>From
-							Date</b> </font></td>
+							Date</b> </font>
+				</td>
 				<td><input size="10" type="text" name="rt_frdt" id="frdate"
 					readonly="" value="" class="ui-daterangepicker-dateRange">
 
@@ -156,7 +198,8 @@ function onlyNos(e, t) {
 			</tr>
 			<tr>
 				<td><font size="2" face="ARIAL" color="darkblue"><b>To
-							Date</b> </font></td>
+							Date</b> </font>
+				</td>
 				<td><input size="10" type="text" name="rt_todt" id="todate"
 					readonly="" value=""
 					class="ui-daterangepicker-dateRange __web-inspector-hide-shortcut__">
@@ -165,19 +208,20 @@ function onlyNos(e, t) {
 			</tr>
 			<tr>
 				<td><font size="2" face="ARIAL" color="darkblue"><b>OVERTIME:</b>
-				</font></td>
+				</font>
+				</td>
 				<td><select id="overtime" name="overtime">
 						<option value="">--SELECT--</option>
 						<option value="=">=</option>
 						<option value="<="><=</option>
 						<option value=">=">>=</option>
 				</select> <input type="text" id="num1" name="number1"
-					onkeypress="return onlyNos(event,this)">
-				</td>
+					onkeypress="return onlyNos(event,this)"></td>
 			</tr>
 			<tr>
 				<td><font size="2" face="ARIAL" color="darkblue"><b>WORKING/HOLIDAYS</b>
-				</font></td>
+				</font>
+				</td>
 				<td><select id="workingholiday" name="workingholiday">
 						<option value="">--ALL--</option>
 						<option value="holday/weeklyoff">HOLIDAY/WEEKLYOFF</option>
@@ -186,14 +230,16 @@ function onlyNos(e, t) {
 			</tr>
 			<tr>
 				<td><font size="2" face="ARIAL" color="darkblue"><b>NORMALWORKINGHOURS</b>
-				</font></td>
+				</font>
+				</td>
 				<td><select id="normalworkinghours" name="normalworkinghours">
 						<option value="">--SELECT--</option>
 						<option value="=">=</option>
 						<option value="<="><=</option>
 						<option value=">=">>=</option>
 				</select> <input type="text" id="num2" name="number2"
-					onkeypress="return onlyNos(event,this)"></td>
+					onkeypress="return onlyNos(event,this)">
+				</td>
 			</tr>
 			<tr>
 				<td></td>
